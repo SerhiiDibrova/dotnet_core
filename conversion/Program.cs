@@ -1,18 +1,20 @@
-﻿namespace Conversion
+namespace Conversion
 {
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+
     public class Program
     {
         public static void Main(string[] args)
         {
-            ToArraySample1.MethodSyntaxExample();
-            ToArraySample1.QuerySyntaxExample();
-
-            ToListSample1.MethodSyntaxExample();
-            ToListSample1.QuerySyntaxExample();
-
-            ToDictionarySample1.Example();
-
-            OfTypeSample1.Example();
+            CreateHostBuilder(args).Build().Run();
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
